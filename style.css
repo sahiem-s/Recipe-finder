@@ -1,0 +1,192 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 100px; /* Increased padding at the bottom */
+  background-image: url('prawns\ biryani.jpg'); /* Add your image URL here */
+  background-position: top center; /* Align image to the top center */
+  background-size: cover; /* Ensure the image covers the full width of the page */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  height: auto; /* Allow the body to expand to fit content */
+  min-height: 100vh; 
+}
+
+
+/* Recipe Finder Title */
+h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 3rem;
+  color: #fff;
+  background-color: rgb(243, 199, 5); /* Semi-transparent green background */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(20, 20, 20, 0);
+  margin-top: 20px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  background-color: #fff; /* Set background color for search container */
+  padding: 10px;
+  border-radius: 25px; /* Rounded corners */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for a soft container look */
+  gap: 10px; /* Adds space between input and button */
+}
+
+/* Remove border from input field and integrate it with container */
+input {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none; /* Remove the input field border */
+  outline: none; /* Remove outline */
+  width: 100%; /* Make input field take up available space */
+  background-color: transparent; /* Make background transparent so it blends with container */
+  margin-right: 10px; /* Add some space between input and button */
+}
+
+/* Find Button */
+.find-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; /* Prevents the button text from wrapping */
+}
+
+/* Hover effect for find button */
+.find-btn:hover {
+  background-color: #218838;
+}
+
+/* Close Button */
+.clear-btn {
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  display: none; /* Hide the clear button initially */
+  margin-right: 20px;
+}
+
+.clear-btn:hover {
+  color: rgb(0, 0, 0); /* Red color on hover */
+}
+
+/* Recipe Result Section */
+#recipeResult {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 80%;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Image frame and image size */
+#recipeResult img {
+  width: 300px; /* Fixed width for the image */
+  height: 200px; /* Fixed height for the image */
+  object-fit: cover; /* Ensures the image fills the frame without distortion, cropping if necessary */
+  border: 3px solid #ddd; /* Thin border for the frame */
+  border-radius: 8px; /* Rounded corners for the image frame */
+  display: block;
+  margin: 10px auto; /* Center the image within its frame */;
+}
+
+/* Footer Section */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-top: 40px;
+
+}
+
+/* Mobile and tablet responsiveness */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .search-container {
+    max-width: 90%;
+  }
+
+  input {
+    padding: 10px 20px;
+  }
+
+  .find-btn {
+    padding: 10px 18px;
+    font-size: 1.1rem;
+  }
+
+  #recipeResult {
+    width: 90%;
+    margin-top: 20px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 370px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .search-container {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  input {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .find-btn {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+
+  #recipeResult {
+    width: 95%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+}
+}

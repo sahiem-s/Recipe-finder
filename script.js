@@ -1,88 +1,66 @@
-// Function to search for a recipe
-function searchRecipe() {
-  const recipeName = document.getElementById("searchInput").value;
+// Import required packages
+import express from "express";
+import cors from "cors";
 
-  // Check if the recipe name is provided
-  if (!recipeName) {
-    alert("Please enter a recipe name.");
-    return;
+// Import recipes from different files (adjust paths if needed)
+import { recipe1 } from "./recipe1.js";
+import { recipe2 } from "./recipe2.js";
+import { recipe3 } from "./recipe3.js";
+
+const app = express();
+const port = process.env.PORT || 3000;  // Use dynamic port in Glitch
+
+// Combine all recipe arrays into a single array
+const recipes = [...recipe1, ...recipe2, ...recipe3];
+
+// Use CORS middleware to allow cross-origin requests
+app.use(cors());
+
+// Middleware to parse JSON bodies (for POST requests)
+app.use(express.json());
+
+// Serve static files (like HTML, CSS, and JS) from the "public" directory
+app.use(express.static("public"));
+
+// Recipe search API route
+app.get("/api/search", (req, res) => {
+  const searchQuery = req.query.name ? req.query.name.trim().toLowerCase() : "";
+
+  if (!searchQuery) {
+    return res.status(400).json({ error: "Please provide a recipe name to search" });
   }
 
-  // Make a request to the backend API to search for the recipe
-  fetch(`http://localhost:3000/api/search?name=${encodeURIComponent(recipeName)}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Recipe not found.");
-      }
-      return response.json();
-    })
-    .then((recipe) => {
-      // Display the recipe details once it's found
-      displayRecipe(recipe);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      // If an error occurs, display it to the user
-      document.getElementById("recipeResult").innerHTML = `<p>${error.message}</p>`;
+  // Log the search query for debugging
+  console.log("Searching for:", searchQuery);
+
+  // Find the recipe that matches the search query (case-insensitive and trimmed)
+  const recipe = recipes.find(
+    (r) => r && r.name && r.name.toLowerCase().trim().includes(searchQuery)
+  );
+
+  // If recipe is found, return the recipe details
+  if (recipe) {
+    console.log("Recipe found:", recipe);
+    return res.json({
+      name: recipe.name,
+      ingredients: recipe.ingredients || [],
+      steps: recipe.steps || [],
+      instructions: recipe.instructions || "",
+      image: recipe.image || "", // Include the image if available
     });
-}
-
-// Function to display recipe details
-function displayRecipe(recipe) {
-  const recipeResult = document.getElementById("recipeResult");
-
-  // Check if the recipe has all necessary properties
-  if (!recipe) {
-    recipeResult.innerHTML = `<p>Recipe not found.</p>`;
-    return;
-  }
-
-  // Check if recipe data is incomplete
-  if (!recipe.name || !recipe.image || !recipe.ingredients || !recipe.steps) {
-    recipeResult.innerHTML = `<p>Recipe data is incomplete.</p>`;
-    return;
-  }
-
-  // Render the recipe details
-  recipeResult.innerHTML = `
-    <h2>${recipe.name}</h2>
-    <img src="${recipe.image}" alt="${recipe.name}" class="recipe-image">
-    <div class="recipe-ingredients">
-      <h3>Ingredients:</h3>
-      <ul>
-        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-      </ul>
-    </div>
-    <div class="recipe-steps">
-      <h3>Steps:</h3>
-      <ul>
-        ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
-      </ul>
-    </div>
-  `;
-}
-
-// Function to clear the search input field
-function clearSearch() {
-  document.getElementById("searchInput").value = "";
-  document.getElementById("clearBtn").style.display = "none"; // Hide the clear button
-  document.getElementById("recipeResult").innerHTML = ""; // Optionally clear the recipe result
-}
-
-// Function to toggle the visibility of the clear button (X)
-function toggleClearButton() {
-  const searchInput = document.getElementById("searchInput");
-  const clearBtn = document.getElementById("clearBtn");
-  
-  if (searchInput.value.trim()) {
-    clearBtn.style.display = "block"; // Show the clear button when there is input
   } else {
-    clearBtn.style.display = "none"; // Hide the clear button when input is empty
+    // If recipe is not found, return a 404 error
+    console.log("Recipe not found:", searchQuery);
+    return res.status(404).json({ error: "Recipe not found" });
   }
-}
+});
 
-// Add event listeners to the input field to trigger the toggle of the clear button
-document.getElementById("searchInput").addEventListener("input", toggleClearButton);
+// Basic route to check if the server is running
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
 
-// Optionally, clear the search when the 'X' button is clicked
-document.getElementById("clearBtn").addEventListener("click", clearSearch);
+// Start the server and listen on the dynamic port (Glitch will set the port)
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});

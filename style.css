@@ -3,31 +3,29 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fdfdfd;
+  background-color: #000000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-bottom: 100px; /* Increased padding at the bottom */
+  padding-bottom: 50px;
   background-image: url('prawns\ biryani.jpg'); /* Add your image URL here */
   background-position: top center; /* Align image to the top center */
   background-size: cover; /* Ensure the image covers the full width of the page */
   background-repeat: no-repeat; /* Prevent the image from repeating */
-  height: auto; /* Allow the body to expand to fit content */
-  min-height: 100vh; 
+  height: 100vh; /* Ensure body takes up the full height of the viewport */
 }
-
 
 /* Recipe Finder Title */
 h1 {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Sacramento', cursive; /* Using the font you've linked for the text */
   font-size: 3rem;
   color: #fff;
-  background-color: rgb(243, 199, 5); /* Semi-transparent green background */
+  background-color: rgba(40, 167, 69, 0.7); /* Semi-transparent green background */
   padding: 10px 20px;
   border-radius: 5px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(20, 20, 20, 0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   width: fit-content;
   margin-left: auto;
@@ -129,7 +127,6 @@ footer {
   bottom: 0;
   left: 0;
   margin-top: 40px;
-
 }
 
 /* Mobile and tablet responsiveness */
@@ -187,6 +184,6 @@ footer {
   }
 
   footer {
-    font-size: 0.8rem;
-}
+    font-size: 0.8rem;
+  }
 }

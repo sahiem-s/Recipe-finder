@@ -9,9 +9,7 @@ function searchRecipe() {
   }
 
   // Make a request to the backend API to search for the recipe
-  fetch(
-    `http://localhost:3000/api/search?name=${encodeURIComponent(recipeName)}`
-  )
+  fetch(`http://localhost:3000/api/search?name=${encodeURIComponent(recipeName)}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Recipe not found.");
@@ -25,9 +23,7 @@ function searchRecipe() {
     .catch((error) => {
       console.error("Error:", error);
       // If an error occurs, display it to the user
-      document.getElementById(
-        "recipeResult"
-      ).innerHTML = `<p>${error.message}</p>`;
+      document.getElementById("recipeResult").innerHTML = `<p>${error.message}</p>`;
     });
 }
 
@@ -54,15 +50,13 @@ function displayRecipe(recipe) {
     <div class="recipe-ingredients">
       <h3>Ingredients:</h3>
       <ul>
-        ${recipe.ingredients
-          .map((ingredient) => `<li>${ingredient}</li>`)
-          .join("")}
+        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
       </ul>
     </div>
     <div class="recipe-steps">
       <h3>Steps:</h3>
       <ul>
-        ${recipe.steps.map((step) => `<li>${step}</li>`).join("")}
+        ${recipe.steps.map(step => `<li>${step}</li>`).join('')}
       </ul>
     </div>
   `;
@@ -79,7 +73,7 @@ function clearSearch() {
 function toggleClearButton() {
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearBtn");
-
+  
   if (searchInput.value.trim()) {
     clearBtn.style.display = "block"; // Show the clear button when there is input
   } else {
@@ -88,9 +82,7 @@ function toggleClearButton() {
 }
 
 // Add event listeners to the input field to trigger the toggle of the clear button
-document
-  .getElementById("searchInput")
-  .addEventListener("input", toggleClearButton);
+document.getElementById("searchInput").addEventListener("input", toggleClearButton);
 
 // Optionally, clear the search when the 'X' button is clicked
 document.getElementById("clearBtn").addEventListener("click", clearSearch);

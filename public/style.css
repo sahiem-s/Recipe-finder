@@ -9,7 +9,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding-bottom: 100px; /* Increased padding at the bottom */
-  background-image: url("background5.svg"); /* Add your image URL here */
+  background-image: url('background5.svg'); /* Add your image URL here */
   background-position: center; /* Align image to the center */
   background-size: cover; /* Ensure the image covers the full width of the page */
   background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -27,7 +27,7 @@ header {
   top: 0;
   z-index: 1000; /* Ensure it's above other content */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for a lifted look */
-  font-family: "Arial", sans-serif; /* Consistent font */
+  font-family: 'Arial', sans-serif; /* Consistent font */
 }
 
 /* Header Title */

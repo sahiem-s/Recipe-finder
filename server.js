@@ -8,7 +8,9 @@ import { recipe2 } from "./recipe2.js";
 import { recipe3 } from "./recipe3.js";
 
 const app = express();
-const port = 3000;
+
+// Port configuration: use the environment variable PORT provided by Render
+const port = process.env.PORT || 3000;  // Default to 3000 if no environment variable is provided
 
 // Combine all recipe arrays into a single array
 const recipes = [...recipe1, ...recipe2, ...recipe3];
@@ -55,7 +57,7 @@ app.get("/api/search", (req, res) => {
   }
 });
 
-// Start the server and listen on port 3000
+// Start the server and listen on the correct port
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

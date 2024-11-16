@@ -1,3 +1,6 @@
+// Set the live backend API URL
+const apiBaseURL = "https://recipe-finder-2-8gpq.onrender.com";
+
 // Function to search for a recipe
 function searchRecipe() {
   const recipeName = document.getElementById("searchInput").value;
@@ -9,9 +12,7 @@ function searchRecipe() {
   }
 
   // Make a request to the backend API to search for the recipe
-  fetch(
-    `http://localhost:3000/api/search?name=${encodeURIComponent(recipeName)}`
-  )
+  fetch(`${apiBaseURL}/api/search?name=${encodeURIComponent(recipeName)}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Recipe not found.");
